@@ -5,13 +5,12 @@ const {
 	set,
 	getProperties,
 	run,
-	isEmpty,
 	isNone,
 	isEqual,
 	computed,
 } = Ember;
 
-const {oneWay,or,and,lte,not} = computed;
+const {or,and,lte,not} = computed;
 
 /* global Papa */
 

@@ -1,9 +1,6 @@
 import PouchDB from 'pouchdb';
 import { Adapter } from 'ember-pouch';
 import config from 'addressbook-app/config/environment';
-import Ember from 'ember';
-
-const { assert, isEmpty } = Ember;
 
 var remote = new PouchDB(config.emberPouch.remoteDb);
 var db = new PouchDB(config.emberPouch.localDb);

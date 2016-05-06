@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {set,get,computed,getProperties} = Ember;
+const {set,get,computed} = Ember;
 const {notEmpty,not,and} = computed;
 
 export default Ember.Component.extend({
