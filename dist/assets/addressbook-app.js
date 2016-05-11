@@ -1445,6 +1445,13 @@ define('addressbook-app/routes/addresses', ['exports', 'ember'], function (expor
 		}
 	});
 });
+define('addressbook-app/routes/index', ['exports', 'ember'], function (exports, _ember) {
+	exports['default'] = _ember['default'].Route.extend({
+		redirect: function redirect() {
+			this.transitionTo('addresses');
+		}
+	});
+});
 define('addressbook-app/services/ajax', ['exports', 'ember-ajax/services/ajax'], function (exports, _emberAjaxServicesAjax) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
@@ -2564,7 +2571,7 @@ define("addressbook-app/templates/components/addresses/address-main", ["exports"
                         var el0 = dom.createDocumentFragment();
                         var el1 = dom.createComment("");
                         dom.appendChild(el0, el1);
-                        var el1 = dom.createTextNode(", ");
+                        var el1 = dom.createTextNode("  ");
                         dom.appendChild(el0, el1);
                         var el1 = dom.createComment("");
                         dom.appendChild(el0, el1);
@@ -10316,6 +10323,52 @@ define("addressbook-app/templates/components/transition-group", ["exports"], fun
     };
   })());
 });
+define("addressbook-app/templates/index", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type"]
+        },
+        "revision": "Ember@2.5.1",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "addressbook-app/templates/index.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]]]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define("addressbook-app/transitions/cross-fade", ["exports", "liquid-fire"], function (exports, _liquidFire) {
   exports["default"] = crossFade;
 
@@ -10799,7 +10852,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("addressbook-app/app")["default"].create({"name":"addressbook-app","version":"0.0.0+3678b81c","rootElement":"body"});
+  require("addressbook-app/app")["default"].create({"name":"addressbook-app","version":"0.0.0+3ba9965e","rootElement":"body"});
 }
 
 /* jshint ignore:end */

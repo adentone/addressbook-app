@@ -937,6 +937,15 @@ define('addressbook-app/tests/routes/addresses.jshint', ['exports'], function (e
     assert.ok(true, 'routes/addresses.js should pass jshint.');
   });
 });
+define('addressbook-app/tests/routes/index.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - routes/index.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/index.js should pass jshint.');
+  });
+});
 define('addressbook-app/tests/test-helper', ['exports', 'addressbook-app/tests/helpers/resolver', 'ember-qunit'], function (exports, _addressbookAppTestsHelpersResolver, _emberQunit) {
 
   (0, _emberQunit.setResolver)(_addressbookAppTestsHelpersResolver['default']);
@@ -1107,6 +1116,27 @@ define('addressbook-app/tests/unit/routes/addresses-test.jshint', ['exports'], f
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/routes/addresses-test.js should pass jshint.');
+  });
+});
+define('addressbook-app/tests/unit/routes/index-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('route:index', 'Unit | Route | index', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+});
+define('addressbook-app/tests/unit/routes/index-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/routes/index-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/routes/index-test.js should pass jshint.');
   });
 });
 /* jshint ignore:start */

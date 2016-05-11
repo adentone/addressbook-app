@@ -32,7 +32,7 @@
 								<div class="md-list-item-text">
 									<p><strong>{{address.addressee}}</strong><br>
 									{{address.line1}}<br>
-									{{#if address.isCity}}{{address.city}}, {{address.state}}  {{#if address.isZip}} {{address.zip}}{{/if}}{{/if}}</p>
+									{{#if address.isCity}}{{address.city}}  {{address.state}}  {{#if address.isZip}} {{address.zip}}{{/if}}{{/if}}</p>
 								</div>
 								{{#paper-button iconButton=true onClick=(action "deleteAddress" address)}}
 									{{paper-icon "delete"}}
