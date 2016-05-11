@@ -10852,7 +10852,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("addressbook-app/app")["default"].create({"name":"addressbook-app","version":"0.0.0+3ba9965e","rootElement":"body"});
+  require("addressbook-app/app")["default"].create({"name":"addressbook-app","version":"0.0.0+960ed0bc","rootElement":"body"});
 }
 
 /* jshint ignore:end */
