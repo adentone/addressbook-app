@@ -30,9 +30,9 @@
 						{{#if address.isActive}}
 							{{#paper-item onClick=(action "toggleAddressEdit" address)}}
 								<div class="md-list-item-text">
-									<h3>{{address.addressee}}</h3>
-									<h4>{{address.state}}{{#if address.isCity}}, {{address.city}}{{#if address.isZip}}, {{address.zip}}{{/if}}{{/if}}</h4>
-									<p>{{address.line1}}</p>
+									<p><strong>{{address.addressee}}</strong><br>
+									{{address.line1}}<br>
+									{{#if address.isCity}}{{address.city}}, {{address.state}}  {{#if address.isZip}} {{address.zip}}{{/if}}{{/if}}</p>
 								</div>
 								{{#paper-button iconButton=true onClick=(action "deleteAddress" address)}}
 									{{paper-icon "delete"}}

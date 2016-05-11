@@ -106424,11 +106424,8 @@ define('ember-paper/components/paper-button', ['exports', 'ember', 'ember-paper/
     type: 'button',
     tagName: 'button',
     classNames: ['paper-button', 'md-default-theme', 'md-button'],
-    classNameBindings: ['raised:md-raised', 'iconButton:md-icon-button', 'isSecondary:md-secondary'],
+    classNameBindings: ['raised:md-raised', 'iconButton:md-icon-button'],
 
-    // Paper item secondary container class
-    isSecondary: false,
-    isSecondaryHandlersSet: false,
     // Ripple Overrides
     rippleContainerSelector: null,
     fitRipple: computed.readOnly('iconButton'),
@@ -106606,11 +106603,7 @@ define('ember-paper/components/paper-checkbox', ['exports', 'ember', 'ember-pape
   exports['default'] = _emberPaperComponentsBaseFocusable['default'].extend(_emberPaperMixinsRippleMixin['default'], _emberPaperMixinsProxiableMixin['default'], _emberPaperMixinsColorMixin['default'], {
     tagName: 'md-checkbox',
     classNames: ['md-checkbox', 'md-default-theme'],
-    classNameBindings: ['value:md-checked', 'isSecondary:md-secondary'],
-
-    // Paper item secondary container class
-    isSecondary: false,
-    isSecondaryHandlersSet: false,
+    classNameBindings: ['value:md-checked'],
 
     /* Ripple Overrides */
     rippleContainerSelector: '.md-container',
@@ -107508,17 +107501,6 @@ define('ember-paper/components/paper-input', ['exports', 'ember', 'ember-paper/c
 define('ember-paper/components/paper-item', ['exports', 'ember', 'ember-paper/mixins/ripple-mixin', 'ember-paper/mixins/proxy-mixin'], function (exports, _ember, _emberPaperMixinsRippleMixin, _emberPaperMixinsProxyMixin) {
   'use strict';
 
-  var _get = _ember['default'].get;
-  var set = _ember['default'].set;
-  var isEmpty = _ember['default'].isEmpty;
-  var isEqual = _ember['default'].isEqual;
-  var computed = _ember['default'].computed;
-  var _Ember$run = _ember['default'].run;
-  var scheduleOnce = _Ember$run.scheduleOnce;
-  var later = _Ember$run.later;
-  var not = computed.not;
-  var bool = computed.bool;
-
   exports['default'] = _ember['default'].Component.extend(_emberPaperMixinsRippleMixin['default'], _emberPaperMixinsProxyMixin['default'], {
     tagName: 'md-list-item',
 
@@ -107527,105 +107509,96 @@ define('ember-paper/components/paper-item', ['exports', 'ember', 'ember-paper/mi
     center: false,
     dimBackground: true,
     outline: false,
-    noink: not('shouldBeClickable'),
+    noink: _ember['default'].computed.not('shouldBeClickable'),
 
     classNameBindings: ['shouldBeClickable:md-clickable', 'hasProxiedComponent:md-proxy-focus'],
     attributeBindings: ['role', 'tabindex'],
     role: 'listitem',
     tabindex: '-1',
 
-    hasProxiedComponent: bool('proxiedComponents.length'),
+    hasProxiedComponent: _ember['default'].computed.bool('proxiedComponents.length'),
 
-    hasSecondaryAction: computed('secondaryItem', 'onClick', {
-      get: function get() {
-        var secondaryItem = _get(this, 'secondaryItem');
-        if (!isEmpty(secondaryItem)) {
-          var hasClickAction = _get(this, 'onClick') && this.isProxiedComponent(secondaryItem);
-          var isCheckbox = _get(secondaryItem, 'onChange') && this.isProxiedComponent(secondaryItem);
-          return secondaryItem && (secondaryItem.action || hasClickAction || isCheckbox);
-        } else {
-          return false;
-        }
-      }
+    hasSecondaryAction: _ember['default'].computed('secondaryItem', 'onClick', function () {
+      var secondaryItem = this.get('secondaryItem');
+      return secondaryItem && (secondaryItem.action || this.get('onClick') && this.isProxiedComponent(secondaryItem));
     }),
 
-    secondaryItem: computed('proxiedComponents.[]', {
-      get: function get() {
-        var proxiedComponents = _get(this, 'proxiedComponents');
-        return proxiedComponents.find(function (component) {
-          return _get(component, 'isSecondary');
-        });
-      }
-    }),
-
-    shouldBeClickable: computed('proxiedComponents.length', 'onClick', {
-      get: function get() {
-        return _get(this, 'proxiedComponents.length') || _get(this, 'onClick');
-      }
-    }),
-
-    setupProxiedComponent: function setupProxiedComponent() {
-      var _this = this;
-
-      scheduleOnce('afterRender', this, function () {
-        var tEl = _this.$();
-        var proxiedComponents = _get(_this, 'proxiedComponents');
-        // buttons and md-checkboxes should have .md-secondary class
-        proxiedComponents.forEach(function (component) {
-          if (isEqual(_get(component, 'tagName'), 'button') || isEqual(_get(component, 'tagName'), 'md-checkbox')) {
-            if (!_get(component, 'isSecondary')) {
-              set(component, 'isSecondary', true);
-            }
-          }
-        });
-        // Secondary item has separate action.
-        // Unregister so we don't proxy it.
-        if (_get(_this, 'hasSecondaryAction')) {
-          var bubbles = _get(_this, 'secondaryItem.bubbles');
-          if (isEmpty(bubbles)) {
-            set(_this, 'secondaryItem.bubbles', false);
-            _this.unregister(_get(_this, 'secondaryItem'));
-          }
-        } else {
-          debugger;
-        }
-        // Allow proxied component to propagate ripple hammer event
-        proxiedComponents.forEach(function (component) {
-          if (!_get(component, 'onClick') && !_get(component, 'propagateRipple')) {
-            set(component, 'propagateRipple', true);
-          }
-        });
-        proxiedComponents.forEach(function (view) {
-          var isSecondaryHandlerSet = _get(view, 'isSecondaryHandlerSet');
-          if (isEmpty(isSecondaryHandlerSet)) {
-            (function () {
-              var el = view.$();
-              set(_this, 'mouseActive', false);
-              el.on('mousedown', function () {
-                set(_this, 'mouseActive', true);
-                later(function () {
-                  set(_this, 'mouseActive', false);
-                }, 100);
-              });
-              el.on('focus', function () {
-                if (!_get(_this, 'mouseActive')) {
-                  tEl.addClass('md-focused');
-                }
-                el.on('blur', function proxyOnBlur() {
-                  tEl.removeClass('md-focused');
-                  el.off('blur', proxyOnBlur);
-                });
-              });
-              set(view, 'isSecondaryHandlerSet', true);
-            })();
-          }
-        });
+    secondaryItem: _ember['default'].computed('proxiedComponents.[]', function () {
+      var proxiedComponents = this.get('proxiedComponents');
+      return proxiedComponents.find(function (component) {
+        return component.classNames.indexOf('md-secondary') !== -1;
       });
-    },
+    }),
+
+    shouldBeClickable: _ember['default'].computed('proxiedComponents.length', 'onClick', function () {
+      return this.get('proxiedComponents.length') || this.get('onClick');
+    }),
 
     didInsertElement: function didInsertElement() {
       this._super.apply(this, arguments);
-      this.addObserver('hasProxiedComponent', this, 'setupProxiedComponent');
+
+      var _this = this;
+      var tEl = this.$();
+      var proxies = this.get('proxiedComponents');
+
+      // Secondary item has separate action.
+      // Unregister so we don't proxy it.
+      if (this.get('hasSecondaryAction')) {
+        this.get('secondaryItem').set('bubbles', false);
+        this.unregister(this.get('secondaryItem'));
+      }
+
+      // Allow proxied component to propagate ripple hammer event
+      this.get('proxiedComponents').forEach(function (component) {
+        if (!component.get('onClick')) {
+          component.set('propagateRipple', true);
+        }
+      });
+      // Don't allow proxied component to bubble click event to parent list-item
+      this.get('proxiedComponents').setEach('bubbles', false);
+
+      this.$('.md-icon-button').addClass('md-secondary-container');
+
+      if (this.get('hasProxiedComponent')) {
+        proxies.forEach(function (view) {
+          var el = view.$();
+
+          _this.mouseActive = false;
+          el.on('mousedown', function () {
+            _this.mouseActive = true;
+            _ember['default'].run.later(function () {
+              _this.mouseActive = false;
+            }, 100);
+          }).on('focus', function () {
+            if (_this.mouseActive === false) {
+              tEl.addClass('md-focused');
+            }
+            el.on('blur', function proxyOnBlur() {
+              tEl.removeClass('md-focused');
+              el.off('blur', proxyOnBlur);
+            });
+          });
+        });
+      }
+
+      if (!this.get('shouldBeClickable')) {
+        (function () {
+          var firstChild = tEl.find('>:first-child');
+          firstChild.on('keypress', function (e) {
+            var tagName = _ember['default'].$(e.target).prop('tagName');
+            if (tagName !== 'INPUT' && tagName !== 'TEXTAREA') {
+              var keyCode = e.which || e.keyCode;
+              if (keyCode === 32) {
+                if (firstChild) {
+                  firstChild.click();
+                  e.preventDefault();
+                  e.stopPropagation();
+                }
+              }
+            }
+          });
+        })();
+      }
     },
 
     actions: {
@@ -109376,8 +109349,12 @@ define('ember-paper/mixins/proxiable-mixin', ['exports', 'ember', 'ember-paper/m
 
   exports['default'] = _ember['default'].Mixin.create({
     init: function init() {
+      var _this = this;
+
       this._super.apply(this, arguments);
-      _ember['default'].run.next(this, 'registerProxy');
+      _ember['default'].run(function () {
+        _ember['default'].run.scheduleOnce('afterRender', _this, 'registerProxy');
+      });
     },
 
     registerProxy: function registerProxy() {

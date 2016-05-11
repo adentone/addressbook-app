@@ -2349,10 +2349,10 @@ define("addressbook-app/templates/components/addresses/address-main", ["exports"
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element2 = dom.childAt(fragment, [1]);
+          var element1 = dom.childAt(fragment, [1]);
           var morphs = new Array(2);
-          morphs[0] = dom.createMorphAt(element2, 1, 1);
-          morphs[1] = dom.createMorphAt(element2, 3, 3);
+          morphs[0] = dom.createMorphAt(element1, 1, 1);
+          morphs[1] = dom.createMorphAt(element1, 3, 3);
           return morphs;
         },
         statements: [["block", "paper-button", [], ["onClick", ["subexpr", "action", ["confirmDelete"], [], ["loc", [null, [8, 26], [8, 50]]]], "raised", true, "warn", true], 0, null, ["loc", [null, [8, 2], [8, 97]]]], ["block", "paper-button", [], ["onClick", ["subexpr", "action", ["cancelDelete"], [], ["loc", [null, [9, 26], [9, 49]]]], "raised", true, "accent", true], 1, null, ["loc", [null, [9, 2], [9, 98]]]]],
@@ -2506,12 +2506,12 @@ define("addressbook-app/templates/components/addresses/address-main", ["exports"
                           "loc": {
                             "source": null,
                             "start": {
-                              "line": 34,
-                              "column": 70
+                              "line": 35,
+                              "column": 68
                             },
                             "end": {
-                              "line": 34,
-                              "column": 108
+                              "line": 35,
+                              "column": 105
                             }
                           },
                           "moduleName": "addressbook-app/templates/components/addresses/address-main.hbs"
@@ -2522,7 +2522,7 @@ define("addressbook-app/templates/components/addresses/address-main", ["exports"
                         hasRendered: false,
                         buildFragment: function buildFragment(dom) {
                           var el0 = dom.createDocumentFragment();
-                          var el1 = dom.createTextNode(", ");
+                          var el1 = dom.createTextNode(" ");
                           dom.appendChild(el0, el1);
                           var el1 = dom.createComment("");
                           dom.appendChild(el0, el1);
@@ -2534,7 +2534,7 @@ define("addressbook-app/templates/components/addresses/address-main", ["exports"
                           dom.insertBoundary(fragment, null);
                           return morphs;
                         },
-                        statements: [["content", "address.zip", ["loc", [null, [34, 93], [34, 108]]]]],
+                        statements: [["content", "address.zip", ["loc", [null, [35, 90], [35, 105]]]]],
                         locals: [],
                         templates: []
                       };
@@ -2546,12 +2546,12 @@ define("addressbook-app/templates/components/addresses/address-main", ["exports"
                         "loc": {
                           "source": null,
                           "start": {
-                            "line": 34,
-                            "column": 30
+                            "line": 35,
+                            "column": 9
                           },
                           "end": {
-                            "line": 34,
-                            "column": 115
+                            "line": 35,
+                            "column": 112
                           }
                         },
                         "moduleName": "addressbook-app/templates/components/addresses/address-main.hbs"
@@ -2562,22 +2562,28 @@ define("addressbook-app/templates/components/addresses/address-main", ["exports"
                       hasRendered: false,
                       buildFragment: function buildFragment(dom) {
                         var el0 = dom.createDocumentFragment();
+                        var el1 = dom.createComment("");
+                        dom.appendChild(el0, el1);
                         var el1 = dom.createTextNode(", ");
                         dom.appendChild(el0, el1);
                         var el1 = dom.createComment("");
+                        dom.appendChild(el0, el1);
+                        var el1 = dom.createTextNode("  ");
                         dom.appendChild(el0, el1);
                         var el1 = dom.createComment("");
                         dom.appendChild(el0, el1);
                         return el0;
                       },
                       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-                        var morphs = new Array(2);
-                        morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+                        var morphs = new Array(3);
+                        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
                         morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
+                        morphs[2] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+                        dom.insertBoundary(fragment, 0);
                         dom.insertBoundary(fragment, null);
                         return morphs;
                       },
-                      statements: [["content", "address.city", ["loc", [null, [34, 54], [34, 70]]]], ["block", "if", [["get", "address.isZip", ["loc", [null, [34, 76], [34, 89]]]]], [], 0, null, ["loc", [null, [34, 70], [34, 115]]]]],
+                      statements: [["content", "address.city", ["loc", [null, [35, 31], [35, 47]]]], ["content", "address.state", ["loc", [null, [35, 49], [35, 66]]]], ["block", "if", [["get", "address.isZip", ["loc", [null, [35, 74], [35, 87]]]]], [], 0, null, ["loc", [null, [35, 68], [35, 112]]]]],
                       locals: [],
                       templates: [child0]
                     };
@@ -2653,21 +2659,21 @@ define("addressbook-app/templates/components/addresses/address-main", ["exports"
                       dom.setAttribute(el1, "class", "md-list-item-text");
                       var el2 = dom.createTextNode("\n									");
                       dom.appendChild(el1, el2);
-                      var el2 = dom.createElement("h3");
-                      var el3 = dom.createComment("");
-                      dom.appendChild(el2, el3);
-                      dom.appendChild(el1, el2);
-                      var el2 = dom.createTextNode("\n									");
-                      dom.appendChild(el1, el2);
-                      var el2 = dom.createElement("h4");
-                      var el3 = dom.createComment("");
-                      dom.appendChild(el2, el3);
-                      var el3 = dom.createComment("");
-                      dom.appendChild(el2, el3);
-                      dom.appendChild(el1, el2);
-                      var el2 = dom.createTextNode("\n									");
-                      dom.appendChild(el1, el2);
                       var el2 = dom.createElement("p");
+                      var el3 = dom.createElement("strong");
+                      var el4 = dom.createComment("");
+                      dom.appendChild(el3, el4);
+                      dom.appendChild(el2, el3);
+                      var el3 = dom.createElement("br");
+                      dom.appendChild(el2, el3);
+                      var el3 = dom.createTextNode("\n									");
+                      dom.appendChild(el2, el3);
+                      var el3 = dom.createComment("");
+                      dom.appendChild(el2, el3);
+                      var el3 = dom.createElement("br");
+                      dom.appendChild(el2, el3);
+                      var el3 = dom.createTextNode("\n									");
+                      dom.appendChild(el2, el3);
                       var el3 = dom.createComment("");
                       dom.appendChild(el2, el3);
                       dom.appendChild(el1, el2);
@@ -2681,18 +2687,16 @@ define("addressbook-app/templates/components/addresses/address-main", ["exports"
                       return el0;
                     },
                     buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-                      var element0 = dom.childAt(fragment, [1]);
-                      var element1 = dom.childAt(element0, [3]);
-                      var morphs = new Array(5);
-                      morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 0, 0);
-                      morphs[1] = dom.createMorphAt(element1, 0, 0);
-                      morphs[2] = dom.createMorphAt(element1, 1, 1);
-                      morphs[3] = dom.createMorphAt(dom.childAt(element0, [5]), 0, 0);
-                      morphs[4] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+                      var element0 = dom.childAt(fragment, [1, 1]);
+                      var morphs = new Array(4);
+                      morphs[0] = dom.createMorphAt(dom.childAt(element0, [0]), 0, 0);
+                      morphs[1] = dom.createMorphAt(element0, 3, 3);
+                      morphs[2] = dom.createMorphAt(element0, 6, 6);
+                      morphs[3] = dom.createMorphAt(fragment, 3, 3, contextualElement);
                       dom.insertBoundary(fragment, null);
                       return morphs;
                     },
-                    statements: [["content", "address.addressee", ["loc", [null, [33, 13], [33, 34]]]], ["content", "address.state", ["loc", [null, [34, 13], [34, 30]]]], ["block", "if", [["get", "address.isCity", ["loc", [null, [34, 36], [34, 50]]]]], [], 0, null, ["loc", [null, [34, 30], [34, 122]]]], ["content", "address.line1", ["loc", [null, [35, 12], [35, 29]]]], ["block", "paper-button", [], ["iconButton", true, "onClick", ["subexpr", "action", ["deleteAddress", ["get", "address", ["loc", [null, [37, 72], [37, 79]]]]], [], ["loc", [null, [37, 48], [37, 80]]]]], 1, null, ["loc", [null, [37, 8], [39, 25]]]]],
+                    statements: [["content", "address.addressee", ["loc", [null, [33, 20], [33, 41]]]], ["content", "address.line1", ["loc", [null, [34, 9], [34, 26]]]], ["block", "if", [["get", "address.isCity", ["loc", [null, [35, 15], [35, 29]]]]], [], 0, null, ["loc", [null, [35, 9], [35, 119]]]], ["block", "paper-button", [], ["iconButton", true, "onClick", ["subexpr", "action", ["deleteAddress", ["get", "address", ["loc", [null, [37, 72], [37, 79]]]]], [], ["loc", [null, [37, 48], [37, 80]]]]], 1, null, ["loc", [null, [37, 8], [39, 25]]]]],
                     locals: [],
                     templates: [child0, child1]
                   };
@@ -10795,7 +10799,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("addressbook-app/app")["default"].create({"name":"addressbook-app","version":"0.0.0+c865e3c1","rootElement":"body"});
+  require("addressbook-app/app")["default"].create({"name":"addressbook-app","version":"0.0.0+3678b81c","rootElement":"body"});
 }
 
 /* jshint ignore:end */

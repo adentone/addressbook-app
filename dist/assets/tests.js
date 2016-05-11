@@ -173,7 +173,7 @@ define('addressbook-app/tests/integration/components/address-form-test', ['expor
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.5.1',
           'loc': {
             'source': null,
             'start': {
@@ -217,7 +217,7 @@ define('addressbook-app/tests/integration/components/address-form-test', ['expor
         return {
           meta: {
             'fragmentReason': false,
-            'revision': 'Ember@2.4.5',
+            'revision': 'Ember@2.5.1',
             'loc': {
               'source': null,
               'start': {
@@ -255,7 +255,7 @@ define('addressbook-app/tests/integration/components/address-form-test', ['expor
             'name': 'missing-wrapper',
             'problems': ['wrong-type']
           },
-          'revision': 'Ember@2.4.5',
+          'revision': 'Ember@2.5.1',
           'loc': {
             'source': null,
             'start': {

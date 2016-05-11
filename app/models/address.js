@@ -6,7 +6,7 @@ const {computed:{notEmpty}} = Ember;
 
 export default Model.extend({
 	addressee: attr('string'),
-  sortname: attr('string', {defaultValue:''}),
+  	sortname: attr('string', {defaultValue:''}),
 	type: attr('string', {defaultValue:''}),
 	line1: attr('string'),
 	line2: attr('string', {defaultValue:''}),
